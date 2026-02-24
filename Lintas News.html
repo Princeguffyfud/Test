@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lintas News — Portal Berita Militer</title>
+  <meta name="description" content="Lintas News menyajikan informasi terbaru seputar dunia militer, pertahanan, dan keamanan nasional." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      --bg: #0b0f1a;
+      --panel: #12182a;
+      --accent: #5ee1a2;
+      --text: #e6eef8;
+      --muted: #9fb0c6;
+      --danger: #ff6b6b;
+    }
+    * { box-sizing: border-box }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif }
+    a { color: var(--accent); text-decoration: none }
+    a:hover { text-decoration: underline }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: linear-gradient(180deg, rgba(18,24,42,0.75), rgba(18,24,42,0.65));
+      border-bottom: 1px solid rgba(94,225,162,0.2);
+    }
+    .topbar {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 12px;
+      align-items: center; padding: 14px 20px; max-width: 1100px; margin: 0 auto;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 0.6px
+    }
+    .badge {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: radial-gradient(circle at 30% 30%, #5ee1a2 0%, #1f3d2f 40%, #0b0f1a 100%);
+      box-shadow: 0 0 0 2px rgba(94,225,162,0.35), 0 6px 18px rgba(0,0,0,0.35);
+      position: relative;
+    }
+    .badge::after {
+      content: ""; position: absolute; inset: 9px;
+      border: 2px solid rgba(255,255,255,0.35); border-top-color: transparent; transform: rotate(45deg);
+    }
+    nav { display: flex; gap: 8px; justify-content: center }
+    .nav-link {
+      padding: 8px 12px; border-radius: 8px; color: var(--text);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .nav-link.active, .nav-link:hover { background: rgba(94,225,162,0.15) }
+
+    .time { font-size: 13px; color: var(--muted) }
+
+    .hero {
+      background: linear-gradient(140deg, rgba(94,225,162,0.08), rgba(18,24,42,0.6)), url('') center/cover no-repeat;
+      border-bottom: 1px solid rgba(94,225,162,0.2);
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; padding: 22px 20px 28px;
+      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px;
+    }
+    .hero h1 { margin: 0 0 8px; font-size: clamp(26px, 4.5vw, 34px) }
+    .hero p { margin: 0; color: var(--muted) }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 28px 20px }
+    .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px }
+    .card {
+      background: var(--panel); border: 1px solid rgba(94,225,162,0.18);
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    }
+    .card header {
+      background: linear-gradient(180deg, rgba(94,225,162,0.12), rgba(18,24,42,0.2));
+      border-bottom: 1px solid rgba(94,225,162,0.25);
+      position: static;
+    }
+    .card-title { padding: 14px 16px; font-weight: 700 }
+    .card-body { padding: 16px }
+    .article {
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(94,225,162,0.12);
+    }
+    .article:last-child { border-bottom: 0 }
+    .article h3 { margin: 0 0 8px; font-size: 18px }
+    .meta { font-size: 12px; color: var(--muted); margin-bottom: 8px }
+    .tag {
+      display: inline-block; font-size: 12px; color: #0b0f1a; background: var(--accent);
+      padding: 2px 8px; border-radius: 999px; margin-right: 8px; font-weight: 600;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(94,225,162,0.3);
+      background: rgba(94,225,162,0.1); color: var(--text); cursor: pointer;
+      transition: transform 0.05s ease, background 0.2s ease;
+    }
+    .btn:hover { background: rgba(94,225,162,0.18) }
+    .btn:active { transform: translateY(1px) }
+
+    .list { display: grid; gap: 12px }
+    .small {
+      font-size: 13px; color: var(--muted);
+    }
+    .footer {
+      border-top: 1px solid rgba(94,225,162,0.2);
+      padding: 20px; text-align: center; color: var(--muted)
+    }
+
+    /* Responsif */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr }
+      .grid { grid-template-columns: 1fr }
+      nav { justify-content: flex-start; overflow-x: auto }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <div class="badge" aria-hidden="true"></div>
+        <div>Army News</div>
+      </div>
+      <nav aria-label="Navigasi utama">
+        <a href="#beranda" class="nav-link active">Beranda</a>
+        <a href="#berita" class="nav-link">Berita</a>
+        <a href="#profil" class="nav-link">Profil</a>
+      </nav>
+      <div class="time" id="time"></div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>Portal berita militer dan pertahanan</h1>
+        <p>Informasi akurat, cepat, dan berimbang tentang dunia militer, kesiapan pertahanan, dan keamanan nasional.</p>
+      </div>
+      <div class="card">
+        <header><div class="card-title">Sorotan hari ini</div></header>
+        <div class="card-body">
+          <div class="list">
+            <div class="small">Pembukaan Sekolah Calon Perwira Indonesia Army Roblox .</div>
+            <div class="small">Para pelatih secapa fix membuka Sekolah Calon Perwira .</div>
+            <div class="small">Prajurit yang mengikuti sebanyak 45 prajurit  .</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Konten -->
+  <main class="container">
+    <div class="grid">
+      <!-- Kolom utama -->
+      <section class="card" id="page">
+        <header><div class="card-title" id="page-title">Beranda</div></header>
+        <div class="card-body" id="page-content">
+          <!-- Halaman Beranda (default) -->
+          <article class="article">
+            <span class="tag">Pengantar</span>
+            <h3>Selamat datang di Lintas News</h3>
+            <div class="meta">Diperbarui pagi ini • Redaksi Lintas News</div>
+            <p>Lintas News menyajikan rangkuman harian seputar latihan, operasi, kebijakan, dan teknologi pertahanan dari berbagai sumber resmi. Kami mengutamakan akurasi, verifikasi, dan keselamatan publik dalam setiap publikasi.</p>
+          </article>
+          <article class="article">
+            <span class="tag">Agenda</span>
+            <h3>Agenda liputan pekan ini</h3>
+            <div class="meta">Liputan mendalam • Jakarta, Indonesia</div>
+            <p>Tim liputan menyoroti upacara pembukaan Sekolah Calon Perwira pada malam hari pukul 20:30 WIB.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Sidebar -->
+      <aside class="card">
+        <header><div class="card-title">Pembaruan cepat</div></header>
+        <div class="card-body">
+          <ul class="list" aria-label="Pembaruan cepat">
+            <li>
+              <span class="small">20:30 WIB — Prepare personel upacara.</span>
+            </li>
+            <li>
+              <span class="small">20:45 WIB — Memulai upacara pembukaaan Sekolah Calon Perwira.</span>
+            </li>
+            <li>
+              <span class="small">21:45 WIB — Sesi foto bersama.</span>
+            </li>
+          </ul>
+          <div style="margin-top:14px">
+            <button class="btn" id="subscribeBtn" aria-label="Langganan buletin">
+              <span>Langganan buletin</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    © <span id="year"></span> Lintas News • Disusun untuk keperluan demo naskah dan halaman berita.
+  </footer>
+
+  <script>
+    // Waktu lokal (WIB) dan tahun
+    function updateTime() {
+      const now = new Date();
+      const opts = { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Asia/Jakarta' };
+      document.getElementById('time').textContent = new Intl.DateTimeFormat('id-ID', opts).format(now) + ' WIB';
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Router sederhana via hash: #beranda, #berita, #profil, #kontak
+    const pages = {
+      beranda: {
+        title: 'Beranda',
+        html: `
+          <article class="article">
+            <span class="tag">Pengantar</span>
+            <h3>Selamat datang di Lintas News</h3>
+            <div class="meta">Diperbarui pagi ini • Redaksi Lintas News</div>
+            <p>Lintas News menyajikan rangkuman harian seputar latihan, operasi, kebijakan, dan teknologi pertahanan dari berbagai sumber resmi. Kami mengutamakan akurasi, verifikasi, dan keselamatan publik dalam setiap publikasi.</p>
+          </article>
+          <article class="article">
+            <span class="tag">Agenda</span>
+            <h3>Agenda liputan pekan ini</h3>
+            <div class="meta">Liputan mendalam • Jakarta, Indonesia</div>
+            <p>Tim liputan menyoroti upacara pembukaan sekolah calon perwira di Rindam Jayakarta pada pukul 20:30 WIB.</p>
+          </article>
+        `
+      },
+      berita: {
+        title: 'Berita',
+        html: `
+          <article class="article">
+            <span class="tag">Berita Utama</span>
+            <h3>Pembukaan Sekolah Calon Perwira</h3>
+            <div class="meta">Jakarta • Editor: Redaksi</div>
+            <p>Pembukaan Sekolah Calon Perwira(SECAPA).</p>
+            <p>Pada malam hari ini tanggal 9 Desember 2025, telah dilaksanakannya upacara pembukaan calon perwira, yang dimana pada pendidikan perwira ini sudah memasuki angkatan 3 yang beranggotakan 45 prajurit bintara terpilih yang akan di didik menjadi seorang perwira.
+
+ Ada beberapa pesan yang disampaikan oleh pejabat Indonesian Army, salah satunya Komandan Sekolah Calon Perwira(SECAPA) Mayjen TNI. Realmyname00 beliau berpesan " Saya harap kalian bisa menyelesaikan pelatihan dengan disiplin tidak bertele tele, dan setelah lulus pendidikan dapat menjadi contoh bagi bawahan dana menjadi pemimpin yang dapat menentukan keputusan dengan tepat, dan juga dapat melakukan kegiatan agar komunitas ini terus berjalan dan berkembang"
+
+Dan PLT. Panglima TNI, yaitu Letjen TNI. Sagiborzzz "Tolong ditingkat lagi semuanya dari sikap, tutur bicara, dan perilaku kalian. Semangat buat siswa siswa gel.3 semoga kita dapat bekerja sama untuk membangun komunitas ini."
+
+Disusul dengan PLT. Kepala Staff Angkatan Darat. Mayjen TNI. ErnestSan,   "Saya harapkan belajar dengan baik, serap semua materi yang diajarkan, tetap menjadi prajurit yang berkarakter, saya berpesan 3 hal. 1. Pegang teguh peraturan dan etika.
+2.Kuasai ilmu kepemimpinan kalian untuk memimpin satuan kalian.
+3.Silahkan bangun solidaritas dan integritas Kalian."</p>
+        `
+      },
+      profil: {
+        title: 'Profil',
+        html: `
+          <article class="article">
+            <span class="tag">Tentang Kami</span>
+            <h3>Misi dan nilai Army News</h3>
+            <div class="meta">Transparansi • Akurasi • Keselamatan</div>
+            <p>Army News adalah portal berita yang fokus pada isu militer dan pertahanan. Kami menjunjung verifikasi, integritas editorial, dan penyajian informasi yang berimbang untuk mendukung pemahaman publik.</p>
+            <p>Konten kami disusun oleh tim redaksi yang berpengalaman, dengan rujukan pada sumber resmi dan praktik jurnalisme yang bertanggung jawab.</p>
+          </article>
+          <article class="article">
+            <span class="tag">Tim</span>
+            <h3>Struktur redaksi</h3>
+            <div class="meta">Redaksi • Produksi • Lapangan</div>
+            <p>Redaktur mengoordinasikan liputan dan penulisan; tim lapangan menangani reportase langsung; tim produksi memastikan kualitas visual dan distribusi digital lintas platform.</p>
+          </article>
+        `
+      },
+      kontak: {
+        title: 'Kontak',
+        html: `
+          <article class="article">
+            <span class="tag">Hubungi Kami</span>
+            <h3>Redaksi Army News</h3>
+            <div class="meta">Waktu layanan: Senin–Jumat, 09:00–17:00 WIB</div>
+            <p>Untuk siaran pers, kolaborasi, atau klarifikasi konten, silakan kirim email ke redaksi@armynews.demo atau form kontak internal (dapat ditambahkan di implementasi produksi).</p>
+            <p>Kami menghargai masukan pembaca dan selalu berupaya meningkatkan kualitas pemberitaan.</p>
+          </article>
+        `
+      }
+    };
+
+    function renderPage(key) {
+      const page = pages[key] || pages.beranda;
+      document.getElementById('page-title').textContent = page.title;
+      document.getElementById('page-content').innerHTML = page.html;
+      document.querySelectorAll('.nav-link').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + key);
+      });
+    }
+
+    // Inisialisasi berdasarkan hash
+    function initRouter() {
+      const key = (location.hash || '#beranda').replace('#', '');
+      renderPage(key);
+    }
+    window.addEventListener('hashchange', initRouter);
+    initRouter();
+  </script>
+</body>
+</html>
